@@ -11,12 +11,12 @@ describe("fsUtils", () => {
   });
 
   it("should check if image exists", async () => {
-    const res = await doesImageExist(imageName);
+    const res = await doesImageExist(getImagePath(imageName));
     expect(res).toBe(true);
   });
 
   it("should be false if image doesn't exist", async () => {
-    const res = await doesImageExist(fakeName);
+    const res = await doesImageExist(getImagePath(fakeName));
     expect(res).toBe(false);
   });
 });

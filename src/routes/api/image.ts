@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import sharp from "sharp";
 import { doesImageExist, getImagePath } from "../../utils/fsUtils";
+import { getResizedImageStream } from "../../utils/imageUtils";
 
 const image = express.Router();
 
@@ -18,14 +18,17 @@ image.get("/", async (req: Request, res: Response) => {
     const imgPath = getImagePath(imgName as string);
 
     // check if image exists
-    if (!(await doesImageExist(imgName as string))) {
+    if (!(await doesImageExist(imgPath))) {
       res.status(404).send({ err: "image not found" });
       return;
     }
 
     // resize image
-    const image = await sharp(imgPath);
-    const resizedImage = await image.resize(width, height);
+    const resizedImage = await getResizedImageStream(
+      imgName as string,
+      width,
+      height
+    );
 
     // send resized image
     res.type("image/jpg");

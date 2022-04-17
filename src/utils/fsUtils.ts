@@ -5,9 +5,9 @@ function getImagePath(imageName: string): string {
   return path.resolve(`./assets/full/${imageName}`);
 }
 
-function doesImageExist(imageName: string): Promise<boolean> {
+function doesImageExist(imagePath: string): Promise<boolean> {
   return fs
-    .access(getImagePath(imageName))
+    .access(imagePath)
     .then(() => {
       return true;
     })
