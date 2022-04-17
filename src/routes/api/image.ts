@@ -13,12 +13,14 @@ image.get("/", async (req: Request, res: Response) => {
 
     if (!imgName) {
       res.status(400).send({ err: "image query is required" });
+      return;
     }
     const imgPath = getImagePath(imgName as string);
 
     // check if image exists
-    if (!doesImageExist(imgPath)) {
+    if (!(await doesImageExist(imgName as string))) {
       res.status(404).send({ err: "image not found" });
+      return;
     }
 
     // resize image

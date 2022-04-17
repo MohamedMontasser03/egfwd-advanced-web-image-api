@@ -2,7 +2,6 @@ import supertest from "supertest";
 import app from "../..";
 
 const request = supertest(app);
-console.log(request);
 
 describe("GET /api", () => {
   it("should return 200 OK", async () => {
