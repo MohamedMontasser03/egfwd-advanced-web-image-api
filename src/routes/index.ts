@@ -1,10 +1,10 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import image from "./api/image";
 
 const router = express.Router();
 
 // health check endpoint
-router.get("/", (req, res) => {
+router.get("/", (_req: Request, res: Response) => {
   res.send("Server is running");
 });
 

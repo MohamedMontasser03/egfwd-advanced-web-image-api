@@ -7,7 +7,7 @@
     "prettier": "prettier --config .prettierrc --write \"src/**/*.ts\"",
     "lint": "eslint --ext .ts src/**/*.ts --fix",
     "build": "tsc --outDir dist",
-    "start": "nodemon src/index.ts",
+    "dev": "nodemon src/index.ts",
     "test": "npm run build && npx jasmine"
   },
   "keywords": [],

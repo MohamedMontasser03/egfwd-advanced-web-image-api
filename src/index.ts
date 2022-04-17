@@ -1,5 +1,5 @@
-import express from 'express';
-import routes from './routes';
+import express from "express";
+import routes from "./routes";
 
 // create express app
 const app = express();
