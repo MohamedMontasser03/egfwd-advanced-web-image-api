@@ -8,8 +8,14 @@ const image = express.Router();
 image.get("/", async (req: Request, res: Response) => {
   try {
     const { image: imgName } = req.query;
-    const width = 400;
-    const height = 400;
+    const width = parseInt(req.query.width as string) || 400;
+    const height = parseInt(req.query.height as string) || 400;
+
+    // check if width and height are valid
+    if (isNaN(width) || isNaN(height)) {
+      res.status(400).send("Invalid width or height");
+      return;
+    }
 
     if (!imgName) {
       res.status(400).send({ err: "image query is required" });
